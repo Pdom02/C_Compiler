@@ -2,12 +2,14 @@
 #include <iostream>
 #include <vector>
 
+#include "Token.h"
+
 class Tokenizer
 {
     public:
         Tokenizer();
-        std::string tok;
-        std::vector<std::string>tokens;
+        Token token;
+        std::vector<Token>tokens;
 
         int tokenize(std::vector<std::string>vect);
         void printTokens();

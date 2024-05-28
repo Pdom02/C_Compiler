@@ -1,11 +1,15 @@
-#include "lexScanner.h"
+#include <iostream>
+#include <string>
+#include "Token.h"
 
-Tokenizer::Tokenizer() {};
-
-
-int Tokenizer::tokenize(std::vector<std::string>vect)
+Token::Token(std::string token, TOKEN_TYPES tokenType)
 {
+    token = token_content;
+    tokenType = token_type;
+};
 
+int Token::tokenize(std::vector<std::string>vect)
+{
     if(vect.size() == 0)
     {
         std::cerr << "Vector is empty!!" << std::endl;
@@ -18,7 +22,7 @@ int Tokenizer::tokenize(std::vector<std::string>vect)
         {
             if(c == '\n' || c == ' ')
             {
-                if(!token.token_content.empty())
+                if(!token_content.empty())
                 {
                     tokens.push_back(token);
                     token.erase();
@@ -39,11 +43,12 @@ int Tokenizer::tokenize(std::vector<std::string>vect)
     return 0;
 }
 
-void Tokenizer::printTokens()
+int Token::erase()
 {
-    // std::cout << tokens.size() << std::endl;
-    for(size_t i = 0; i < tokens.size(); i++)
-    {
-        std::cout << "Token " << i << ": " << tokens.at(i) << std::endl;
-    }
+    token_content = "";
+
+    return 0;
 }
+
+
+

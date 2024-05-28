@@ -33,7 +33,7 @@ int main(int argc, const char* argv[])
         }
         
         fin.close();
-
+        
         token.tokenize(lineStorage);
         token.printTokens();
     }
