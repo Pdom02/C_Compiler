@@ -4,22 +4,23 @@
 
 #include "TokenType.h"
 
+//This class contains the contents of the token object, it also holds the vector which 
+//will hold all tokens and a few helper functions
 
 class Token{
     public:
+        Token();
+        Token(std::string token_content);
         std::string token_content;
         TOKEN_TYPES token_type;
-    
-        Token(std::string token, TOKEN_TYPES tokenType);
-        int tokenize(std::vector<std::string>vect);
+
+        // std::vector<Token>tokens;
+        //int tokenize(std::vector<std::string>vect);
         int erase();
+        // void printTokens();
+        ~Token() {};
 
         friend std::ostream& operator<<(std::ostream& print, Token const& obj);
 
 };
 
-std::ostream& operator<<(std::ostream& print, Token const& obj)
-{
-    print << "Type: " << obj.token_type << " Lexeme: " << obj.token_content << std::endl;
-    return print;
-}

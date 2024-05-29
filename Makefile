@@ -1,12 +1,14 @@
 ### Make options, there's very few required but this is more for practice I suppose ###
-ifdef OS
+ifeq (a, $(shell echo "a"))
+	COMPILER = g++
+	OPTIONS = -Wall
+	RM = rm -f *.o
+
+else
 	RM = del /Q *.o
 	COMPILER = "C:\msys64\ucrt64\bin\g++"
 	OPTIONS = -Wall
-else
-	ifeq ($(shell uname), Linux)
-		RM = rm -f *.o
-	endif
+
 endif	
 
 # COMPILER = g++
@@ -25,14 +27,14 @@ CLEAN=$(RM)
 
 all: program
 
-program: main.o lexScanner.o
-	$(COMPILE) main.o lexScanner.o -o program
+program: main.o token.o
+	$(COMPILE) main.o token.o -o program
 
-main.o: main.cpp lexScanner.h
+main.o: main.cpp Token.h
 	$(COMPILE) -c main.cpp
 
-lexScanner.o: lexScanner.cpp lexScanner.h TokenType.h Token.h Token.cpp
-	$(COMPILE) -c lexScanner.cpp
+token.o: Token.cpp Token.h TokenType.h
+	$(COMPILE) -c Token.cpp
 
 clean:
 	$(CLEAN) program.o
