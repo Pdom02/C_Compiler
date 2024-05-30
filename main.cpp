@@ -21,8 +21,20 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
             {
                 if(!token.token_content.empty())
                 {
+                    for(const auto& pair : tokenTypeMap)
+                    {
+                        if(std::regex_match(token.token_content, pair.second))
+                        {
+                            token.token_type = pair.first;
+                        }
+                        else
+                        {
+                            std::cout << "What the fuck?" << std::endl;
+                        }
+                    }
                     // Token copyTok(token.token_content);
-                    tokens.push_back(Token(token.token_content));
+                    //Call the switch statement function here
+                    tokens.push_back(Token(token.token_content, token.token_type));
                     token.erase();
                 }
             }
@@ -34,7 +46,14 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
         }
         if(!token.token_content.empty())
         {
-            tokens.push_back(Token(token.token_content));
+            for(const auto& pair : tokenTypeMap)
+            {
+                if(std::regex_match(token.token_content, pair.second))
+                {
+                    token.token_type = pair.first;
+                }
+            }
+            tokens.push_back(Token(token.token_content, token.token_type));
             token.erase();
         }
     }
@@ -69,7 +88,6 @@ int main(int argc, const char* argv[])
         std::string line; //We will store the file contents line by line into the vector of lines
         std::vector<std::string> lineStorage; //This is the prepped state of the file data before it moves to the Tokenizer
         std::vector<Token> tokens;
-
 
         fin.open(argv[1]);
 

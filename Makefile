@@ -27,14 +27,17 @@ CLEAN=$(RM)
 
 all: program
 
-program: main.o token.o
-	$(COMPILE) main.o token.o -o program
+program: main.o token.o TokenType.o
+	$(COMPILE) main.o token.o TokenType.o -o program
 
-main.o: main.cpp Token.h
+main.o: main.cpp Token.h TokenType.h
 	$(COMPILE) -c main.cpp
 
 token.o: Token.cpp Token.h TokenType.h
 	$(COMPILE) -c Token.cpp
+
+TokenType.o: TokenType.cpp TokenType.h
+	$(COMPILE) -c TokenType.cpp
 
 clean:
 	$(CLEAN) program.o

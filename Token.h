@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <regex>
 
 #include "TokenType.h"
 
@@ -10,7 +11,7 @@
 class Token{
     public:
         Token();
-        Token(std::string token_content);
+        Token(std::string token_content, TOKEN_TYPES token_type);
         std::string token_content;
         TOKEN_TYPES token_type;
 
@@ -21,6 +22,8 @@ class Token{
         ~Token() {};
 
         friend std::ostream& operator<<(std::ostream& print, Token const& obj);
+        // friend void regex_comparator(Token token);
 
 };
+
 
