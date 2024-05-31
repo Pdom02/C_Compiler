@@ -20,7 +20,7 @@ int Token::erase()
     return 0;
 }
 
-//Friend functions
+//Friend function
 
 std::ostream& operator<<(std::ostream& print, Token const& obj)
 {
@@ -28,12 +28,4 @@ std::ostream& operator<<(std::ostream& print, Token const& obj)
     return print;
 }
 
-// void regex_comparator(Token token) 
-// {
-
-    
-
-
-
-// }
 
