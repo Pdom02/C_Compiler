@@ -4,6 +4,10 @@ Basic C++ Compiler, built for educational purposes
 
 Currently working on the lexical scanner, the first stage of the compiler.
 
+# Dependencies
+
+Must be compiled using g++, there is support for mingw32's g++ as long as it is installed in the default directory; otherwise, you may need to play with the makefile to make it find your installation.
+
 # Overview of Files
 
 
