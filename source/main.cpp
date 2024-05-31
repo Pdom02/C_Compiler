@@ -23,7 +23,11 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
                 {
                     for(const auto& pair : tokenTypeMap)
                     {
-                        if(std::regex_match(token.token_content, pair.second))
+                        if(!std::regex_match(token.token_content, pair.second))
+                        {
+                            token.token_type = UNKNOWN_TOKEN;
+                        }
+                        else
                         {
                             token.token_type = pair.first;
                         }

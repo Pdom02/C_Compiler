@@ -12,6 +12,8 @@ enum TOKEN_TYPES {
     DIVISOR = 1002, 
     MULTIPLIER = 1003, 
     RAISE = 1004, 
+    EQUAL = 1005,
+    
     //Separator
     LEFT_PAREN = 1100, 
     RIGHT_PAREN = 1101, 
@@ -33,13 +35,14 @@ enum TOKEN_TYPES {
 
     //Literal
     FLOAT = 1400, 
-    BOOL = 1401, 
-    STRING = 1402, 
-    INTEGER = 1403, 
-    CHARACTER = 1404,
+    STRING = 1401, 
+    INTEGER = 1402, 
+    CHARACTER = 1403,
 
     //Comment
     COMMENT = 1500,
+
+    UNKNOWN_TOKEN = 2000,
 
 };
 
@@ -53,6 +56,7 @@ extern std::regex minus;
 extern std::regex division;
 extern std::regex star;
 extern std::regex raisePower;
+extern std::regex equals;
 
 //Separators
 extern std::regex left_paren;
@@ -74,13 +78,12 @@ extern std::regex and_key;
 extern std::regex or_key;
 
 //Literal
-// extern std::regex float_type;
-// extern std::regex bool_type;
-// extern std::regex string_type;
-// extern std::regex integer_type;
-// extern std::regex character_type;
+extern std::regex float_literal;
+extern std::regex string_literal;
+extern std::regex integer_literal;
+extern std::regex character_literal;
 
 //comment
-// extern std::regex comment;
+extern std::regex comment;
 
 #endif 
