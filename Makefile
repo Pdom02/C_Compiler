@@ -1,43 +1,34 @@
-### Make options, there's very few required but this is more for practice I suppose ###
 ifeq (a, $(shell echo "a"))
-	COMPILER = g++
-	OPTIONS = -Wall
-	RM = rm -f *.o
-
+    COMPILER = g++
+    OPTIONS = -Wall
+    RM = rm -f
 else
-	RM = del /Q *.o
-	COMPILER = "C:\msys64\ucrt64\bin\g++"
-	OPTIONS = -Wall
+    RM = del /Q
+    COMPILER = "C:\msys64\ucrt64\bin\g++"
+    OPTIONS = -Wall
+endif
 
-endif	
+SRCPATH = ./source
+OBJPATH = ./obj
+INCLUDEPATH = -I ./include
+SOURCES = $(wildcard $(SRCPATH)/*.cpp)
+OBJECTS = $(patsubst $(SRCPATH)/%.cpp, $(OBJPATH)/%.o, $(SOURCES))
 
-# COMPILER = g++
-# OPTIONS = -Wall
+COMPILE = $(COMPILER) $(OPTIONS) $(INCLUDEPATH)
+CLEAN = $(RM) $(OBJPATH)/*.o program
 
-COMPILE=$(COMPILER) $(OPTIONS)
+.PHONY: all clean
 
-### Command for clean ###
+all: $(OBJPATH) program
 
-# RM = rm
-# OPTION=-f *.o
+$(OBJPATH):
+	mkdir -p $(OBJPATH)
 
-CLEAN=$(RM)
+program: $(OBJECTS)
+	$(COMPILE) $^ -o $@
 
-### End of options ###
-
-all: program
-
-program: main.o token.o TokenType.o
-	$(COMPILE) main.o token.o TokenType.o -o program
-
-main.o: main.cpp Token.h TokenType.h
-	$(COMPILE) -c main.cpp
-
-token.o: Token.cpp Token.h TokenType.h
-	$(COMPILE) -c Token.cpp
-
-TokenType.o: TokenType.cpp TokenType.h
-	$(COMPILE) -c TokenType.cpp
+$(OBJPATH)/%.o: $(SRCPATH)/%.cpp
+	$(COMPILE) -c $< -o $@
 
 clean:
-	$(CLEAN) program.o
+	$(CLEAN)

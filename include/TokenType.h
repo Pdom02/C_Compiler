@@ -55,14 +55,23 @@ extern std::regex star;
 extern std::regex raisePower;
 
 //Separators
-// extern std::regex left_paren;
-// extern std::regex right_paren;
-// extern std::regex left_curly;
-// extern std::regex right_curly;
-// extern std::regex dot;
+extern std::regex left_paren;
+extern std::regex right_paren;
+extern std::regex left_curly;
+extern std::regex right_curly;
+extern std::regex semicolon;
+extern std::regex dot;
 
 //identifer
-// extern std::regex identifier;
+extern std::regex identifier;
+
+//Keywords
+extern std::regex if_key;
+extern std::regex else_key;
+extern std::regex while_key;
+extern std::regex for_key;
+extern std::regex and_key;
+extern std::regex or_key;
 
 //Literal
 // extern std::regex float_type;

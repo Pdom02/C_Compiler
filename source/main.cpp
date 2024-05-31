@@ -27,10 +27,6 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
                         {
                             token.token_type = pair.first;
                         }
-                        else
-                        {
-                            std::cout << "What the fuck?" << std::endl;
-                        }
                     }
                     // Token copyTok(token.token_content);
                     //Call the switch statement function here
