@@ -17,35 +17,7 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
     {
         for(char c : vect.at(i))
         {
-            if(c == '\n' || c == ' ')
-            {
-                if(!token.token_content.empty())
-                {
-                    for(const auto& pair : tokenTypeMap)
-                    {
-                        if(!std::regex_match(token.token_content, pair.second))
-                        {
-                            token.token_type = UNKNOWN_TOKEN;
-                        }
-                        else
-                        {
-                            token.token_type = pair.first;
-                        }
-                    }
-                    // Token copyTok(token.token_content);
-                    //Call the switch statement function here
-                    tokens.push_back(Token(token.token_content, token.token_type));
-                    token.erase();
-                }
-            }
-            else
-            {
-                token.token_content.append(1, c);
-            }
-            // std::cout << i << std::endl;
-        }
-        if(!token.token_content.empty())
-        {
+            token.token_content.append(1, c);
             for(const auto& pair : tokenTypeMap)
             {
                 if(std::regex_match(token.token_content, pair.second))
@@ -53,9 +25,46 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
                     token.token_type = pair.first;
                 }
             }
-            tokens.push_back(Token(token.token_content, token.token_type));
-            token.erase();
         }
+        //     if(c == '\n' || c == ' ')
+        //     {
+        //         if(!token.token_content.empty())
+        //         {
+        //             for(const auto& pair : tokenTypeMap)
+        //             {
+        //                 if(std::regex_match(token.token_content, pair.second))
+        //                 {
+        //                     token.token_type = pair.first;
+        //                 }
+        //                 // else
+        //                 // {
+        //                 //     token.token_type = UNKNOWN_TOKEN;
+        //                 // }
+        //             }
+        //             // Token copyTok(token.token_content);
+        //             //Call the switch statement function here
+        //             tokens.push_back(Token(token.token_content, token.token_type));
+        //             token.erase();
+        //         }
+        //     }
+        //     else
+        //     {
+        //         token.token_content.append(1, c);
+        //     }
+        //     // std::cout << i << std::endl;
+        // }
+        // if(!token.token_content.empty())
+        // {
+        //     for(const auto& pair : tokenTypeMap)
+        //     {
+        //         if(std::regex_match(token.token_content, pair.second))
+        //         {
+        //             token.token_type = pair.first;
+        //         }
+        //     }
+        //     tokens.push_back(Token(token.token_content, token.token_type));
+        //     token.erase();
+        // }
     }
     return 0;
 
