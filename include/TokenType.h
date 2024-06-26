@@ -7,37 +7,41 @@
 
 enum TOKEN_TYPES {
     //Operators
-    PLUS = 1000, 
-    MINUS = 1001, 
-    DIVISOR = 1002, 
-    MULTIPLIER = 1003, 
-    RAISE = 1004, 
-    EQUAL = 1005,
+    OPERATOR = 1000,
+    PLUS = 1001, 
+    MINUS = 1002, 
+    DIVISOR = 1003, 
+    MULTIPLIER = 1004, 
+    RAISE = 1005, 
+    EQUAL = 1006,
     
     //Separator
-    LEFT_PAREN = 1100, 
-    RIGHT_PAREN = 1101, 
-    LEFT_CURLY_BRACE = 1102,
-    RIGHT_CURLY_BRACE = 1103, 
-    SEMICOLON = 1104, 
-    DOT = 1105,
+    SEPARATOR = 1100,
+    LEFT_PAREN = 1101, 
+    RIGHT_PAREN = 1102, 
+    LEFT_CURLY_BRACE = 1103,
+    RIGHT_CURLY_BRACE = 1104, 
+    SEMICOLON = 1105, 
+    DOT = 1106,
 
     //Keywords
-    IF = 1200, 
-    ELSE = 1201, 
-    WHILE = 1202, 
-    FOR = 1203, 
-    AND = 1204, 
-    OR = 1205,
+    KEYWORD = 1200,
+    IF = 1201, 
+    ELSE = 1202, 
+    WHILE = 1203, 
+    FOR = 1204, 
+    AND = 1205, 
+    OR = 1206,
 
     //Identifier
     IDENTIFER = 1300,
 
     //Literal
-    FLOAT = 1400, 
-    STRING = 1401, 
-    INTEGER = 1402, 
-    CHARACTER = 1403,
+    // LITERAL = 1400,
+    FLOAT = 1401, 
+    STRING = 1402, 
+    INTEGER = 1403, 
+    CHARACTER = 1404,
 
     //Comment
     COMMENT = 1500,
@@ -51,6 +55,7 @@ extern std::unordered_map<TOKEN_TYPES, std::regex> tokenTypeMap;
 //Regular expressions
 
 //Operators
+extern std::regex _OPERATOR;
 extern std::regex plus;
 extern std::regex minus;
 extern std::regex division;
@@ -59,6 +64,7 @@ extern std::regex raisePower;
 extern std::regex equals;
 
 //Separators
+extern std::regex _SEPARATOR;
 extern std::regex left_paren;
 extern std::regex right_paren;
 extern std::regex left_curly;
@@ -67,9 +73,10 @@ extern std::regex semicolon;
 extern std::regex dot;
 
 //identifer
-extern std::regex identifier;
+extern std::regex _IDENTIFIER;
 
 //Keywords
+extern std::regex _KEYWORD;
 extern std::regex if_key;
 extern std::regex else_key;
 extern std::regex while_key;
@@ -78,6 +85,7 @@ extern std::regex and_key;
 extern std::regex or_key;
 
 //Literal
+// extern std::regex _LITERAL;
 extern std::regex float_literal;
 extern std::regex string_literal;
 extern std::regex integer_literal;
@@ -86,4 +94,8 @@ extern std::regex character_literal;
 //comment
 extern std::regex comment;
 
-#endif 
+//whitespace
+extern std::regex whitespace;
+extern std::regex newline;
+
+#endif

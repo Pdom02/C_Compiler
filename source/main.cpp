@@ -13,11 +13,59 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
         return 1;
     }
 
+    //Remove spaces from each line and join them for parsing.
     for(size_t i = 0; i < vect.size(); i++)
     {
-        for(char c : vect.at(i))
+        for(auto itr = vect.at(i).begin();itr != vect.at(i).end(); itr++ )
         {
-            token.token_content.append(1, c);
+            if(*itr == '\n' || *itr == ' ')
+            {
+            
+                if(!token.token_content.empty())
+                {
+                    for(const auto& pair : tokenTypeMap)
+                    {
+        
+                        if(std::regex_match(token.token_content, pair.second))
+                        {
+                            token.token_type = pair.first;
+                            tokens.push_back(Token(token.token_content, token.token_type));
+                            token.erase();
+                        }
+                        //else it'll just iterate through the string
+                    }
+                }
+            }
+            else if(*itr == '(' || *itr == ')' || *itr == '=' || *itr == '{' || *itr == '}' || *itr == ';')
+            {
+                if(!token.token_content.empty())
+                {
+                    for(const auto& pair : tokenTypeMap)
+                    {
+                        if(std::regex_match(token.token_content, pair.second))
+                        {
+                            token.token_type = pair.first;
+                            tokens.push_back(Token(token.token_content, token.token_type));
+                            token.erase();
+                        }
+                    }
+
+                }
+                else
+                {
+                    token.token_content.append(1, *itr);
+                    token.token_type = SEPARATOR;
+                    tokens.push_back(Token(token.token_content, token.token_type));
+
+                }
+            }
+            else
+            {
+                token.token_content.append(1, *itr);
+            }    
+        }
+        if(!token.token_content.empty())
+        {
             for(const auto& pair : tokenTypeMap)
             {
                 if(std::regex_match(token.token_content, pair.second))
@@ -25,49 +73,12 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
                     token.token_type = pair.first;
                 }
             }
+            tokens.push_back(Token(token.token_content, token.token_type));
+            token.erase();
         }
-        //     if(c == '\n' || c == ' ')
-        //     {
-        //         if(!token.token_content.empty())
-        //         {
-        //             for(const auto& pair : tokenTypeMap)
-        //             {
-        //                 if(std::regex_match(token.token_content, pair.second))
-        //                 {
-        //                     token.token_type = pair.first;
-        //                 }
-        //                 // else
-        //                 // {
-        //                 //     token.token_type = UNKNOWN_TOKEN;
-        //                 // }
-        //             }
-        //             // Token copyTok(token.token_content);
-        //             //Call the switch statement function here
-        //             tokens.push_back(Token(token.token_content, token.token_type));
-        //             token.erase();
-        //         }
-        //     }
-        //     else
-        //     {
-        //         token.token_content.append(1, c);
-        //     }
-        //     // std::cout << i << std::endl;
-        // }
-        // if(!token.token_content.empty())
-        // {
-        //     for(const auto& pair : tokenTypeMap)
-        //     {
-        //         if(std::regex_match(token.token_content, pair.second))
-        //         {
-        //             token.token_type = pair.first;
-        //         }
-        //     }
-        //     tokens.push_back(Token(token.token_content, token.token_type));
-        //     token.erase();
-        // }
     }
-    return 0;
 
+    return 0;
 }
 
 void printTokens(std::vector<Token>tokens)

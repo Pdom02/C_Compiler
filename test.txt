@@ -1,11 +1,1 @@
-if ( thing happens ) {
-    var = 10 + 8 ;
-}
-86 12 33
-1234
-1.23
-.10
-
-for(int i = 0; i < 10; i++) {
-    do thing;
-}
+for(int = 0;)
