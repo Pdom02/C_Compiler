@@ -13,7 +13,7 @@ std::regex integer_literal("^[0-9]");
 std::regex character_literal("[a-zA-Z]{1}");
 
 //Keywords
-std::regex _KEYWORD("if|else|while|for|and|or");
+// std::regex _KEYWORD("if|else|while|for|and|or");
 std::regex if_key("if");
 std::regex else_key("else");
 std::regex while_key("while");
@@ -23,18 +23,18 @@ std::regex or_key("or");
 
 
 //Operators
-std::regex _OPERATOR("\\+|\\-|\\/|\\*|\\^|=");
+// std::regex _OPERATOR("\\+|\\-|\\/|\\*|\\^|=");
 std::regex plus("\\+");
 std::regex minus("\\-");
 std::regex division("\\/");
 std::regex star("\\*");
 std::regex raisePower("\\^");
-std::regex equals("^= $");
+std::regex equals("^=$");
 
 //Separators
-std::regex _SEPARATOR("\\(|\\)|\\{|\\}|;|\\.");
-std::regex left_paren("\\($");
-std::regex right_paren("\\)$");
+// std::regex _SEPARATOR("\\(|\\)|\\{|\\}|;|\\.");
+std::regex left_paren("\\(");
+std::regex right_paren("\\)");
 std::regex left_curly("\\{$");
 std::regex right_curly("\\}$");
 std::regex semicolon("^;$");
@@ -52,7 +52,7 @@ std::unordered_map<TOKEN_TYPES, std::regex> tokenTypeMap = {
 
     {IDENTIFER, _IDENTIFIER},
 
-    {KEYWORD, _KEYWORD},
+    // {KEYWORD, _KEYWORD},
     {IF, if_key},
     {ELSE, else_key},
     {FOR, for_key},
@@ -66,7 +66,7 @@ std::unordered_map<TOKEN_TYPES, std::regex> tokenTypeMap = {
     {INTEGER, integer_literal},
     {CHARACTER, character_literal},
 
-    {OPERATOR, _OPERATOR},
+    // {OPERATOR, _OPERATOR},
     {PLUS, plus},
     {MINUS, minus},
     {DIVISOR, division},
@@ -74,7 +74,7 @@ std::unordered_map<TOKEN_TYPES, std::regex> tokenTypeMap = {
     {RAISE, raisePower},
     {EQUAL, equals},
 
-    {SEPARATOR, _SEPARATOR},
+    // {SEPARATOR, _SEPARATOR},
     {LEFT_PAREN, left_paren},
     {RIGHT_PAREN, right_paren},
     {LEFT_CURLY_BRACE, left_curly},

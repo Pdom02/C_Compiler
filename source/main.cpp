@@ -36,32 +36,39 @@ int tokenize(std::vector<std::string>vect, Token &token, std::vector<Token> &tok
                     }
                 }
             }
-            else if(*itr == '(' || *itr == ')' || *itr == '=' || *itr == '{' || *itr == '}' || *itr == ';')
+            else if(*itr == '(' || *itr == ')' || *itr == '{' || *itr == '}' || *itr == ';')
             {
                 if(!token.token_content.empty())
                 {
+                    std::cout << "Token empty check" << std::endl;
                     for(const auto& pair : tokenTypeMap)
                     {
                         if(std::regex_match(token.token_content, pair.second))
                         {
                             token.token_type = pair.first;
+                            std::cout<< "Token type is found" << std::endl;
                             tokens.push_back(Token(token.token_content, token.token_type));
                             token.erase();
                         }
                     }
 
                 }
-                else
+                token.token_content.append(1, *itr);
+                for(const auto& pair : tokenTypeMap)
                 {
-                    token.token_content.append(1, *itr);
-                    token.token_type = SEPARATOR;
-                    tokens.push_back(Token(token.token_content, token.token_type));
-
+                    if(std::regex_match(token.token_content, pair.second))
+                    {
+                        token.token_type = pair.first;
+                        tokens.push_back(Token(token.token_content, token.token_type));
+                        token.erase();
+                    }
                 }
+
             }
             else
             {
                 token.token_content.append(1, *itr);
+                std::cout << token.token_content << std::endl;
             }    
         }
         if(!token.token_content.empty())

@@ -7,7 +7,7 @@
 
 enum TOKEN_TYPES {
     //Operators
-    OPERATOR = 1000,
+    // OPERATOR = 1000,
     PLUS = 1001, 
     MINUS = 1002, 
     DIVISOR = 1003, 
@@ -16,7 +16,7 @@ enum TOKEN_TYPES {
     EQUAL = 1006,
     
     //Separator
-    SEPARATOR = 1100,
+    // SEPARATOR = 1100,
     LEFT_PAREN = 1101, 
     RIGHT_PAREN = 1102, 
     LEFT_CURLY_BRACE = 1103,
@@ -25,7 +25,7 @@ enum TOKEN_TYPES {
     DOT = 1106,
 
     //Keywords
-    KEYWORD = 1200,
+    // KEYWORD = 1200,
     IF = 1201, 
     ELSE = 1202, 
     WHILE = 1203, 
@@ -55,7 +55,7 @@ extern std::unordered_map<TOKEN_TYPES, std::regex> tokenTypeMap;
 //Regular expressions
 
 //Operators
-extern std::regex _OPERATOR;
+// extern std::regex _OPERATOR;
 extern std::regex plus;
 extern std::regex minus;
 extern std::regex division;
@@ -64,7 +64,7 @@ extern std::regex raisePower;
 extern std::regex equals;
 
 //Separators
-extern std::regex _SEPARATOR;
+// extern std::regex _SEPARATOR;
 extern std::regex left_paren;
 extern std::regex right_paren;
 extern std::regex left_curly;
@@ -76,7 +76,7 @@ extern std::regex dot;
 extern std::regex _IDENTIFIER;
 
 //Keywords
-extern std::regex _KEYWORD;
+// extern std::regex _KEYWORD;
 extern std::regex if_key;
 extern std::regex else_key;
 extern std::regex while_key;
